@@ -1,6 +1,6 @@
-<%= form_with(model: event) do |form| %>
+<%= form_with(model: event, class: "card") do |form| %>
   <% if event.errors.any? %>
-    <div style="color: red">
+    <div class="alert">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
       <ul>
@@ -11,32 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, placeholder: "Enter event title" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description %>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 5, placeholder: "Describe your event" %>
   </div>
 
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, placeholder: "Where will the event take place?" %>
   </div>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
+  <div class="field">
+    <%= form.label :date %>
     <%= form.datetime_field :date %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+  <% if current_user && form.object.new_record? %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  <% end %>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

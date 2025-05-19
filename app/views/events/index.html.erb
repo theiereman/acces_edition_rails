@@ -1,18 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Events" %>
 
 <h1>Events</h1>
 
-<div id="events">
+<div class="event-actions">
+  <%= link_to "New event", new_event_path, class: "btn btn-primary" %>
+</div>
+
+<div id="events" class="event-list">
   <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
+    <div class="event-card">
+      <h2 class="event-title"><%= event.title %></h2>
+      <p><%= truncate(event.description, length: 100) %></p>
+      <div class="event-meta">
+        <p><strong>Location:</strong> <%= event.location %></p>
+        <p><strong>Date:</strong> <%= event.date.strftime("%B %d, %Y at %I:%M %p") %></p>
+        <p><strong>Organized by:</strong> <%= event.user.email %></p>
+      </div>
+      <div class="event-actions">
+        <%= link_to "View details", event, class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New event", new_event_path %>
-
-<%== pagy_nav(@pagy) %>
+<div class="pagination-container">
+  <%== pagy_nav(@pagy) %>
+</div>
