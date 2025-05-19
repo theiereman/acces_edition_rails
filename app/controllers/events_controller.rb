@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
+  include EventsManagement
+
   before_action :set_event, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :authenticate_user!, except: %i[ index show ]
   before_action :check_ownership, only: %i[ edit update destroy ]
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @pagy, @events = pagy(Event.all)
   end
 
   # GET /events/1 or /events/1.json

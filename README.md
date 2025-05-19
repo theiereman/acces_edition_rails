@@ -9,8 +9,10 @@ sudo pacman -S docker
 
 ## commandes pré-lancement :
 
+bundle install
 docker-compose up -d # backgroud docker
 rails db:create rails db:migrate
+rails db:seed (pour créer des données de test)
 
 ## dépendances du projet :
 
