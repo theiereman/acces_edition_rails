@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [ :index, :show ]
+  before_action :check_ownership, only: %i[ edit update destroy ]
 
   # GET /events or /events.json
   def index
@@ -66,5 +68,10 @@ class EventsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def event_params
       params.expect(event: [ :title, :description, :location, :date, :user_id ])
+    end
+
+    def check_ownership
+      return if current_user == @event.user
+      redirect_to root_path, alert: "You are not authorized to access this page."
     end
 end
