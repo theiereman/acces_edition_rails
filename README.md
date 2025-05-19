@@ -50,6 +50,10 @@ Ces 2 gems ont été choisies pour simplifier la mise en place de l'authentifica
 
 Pour rester dans le même écosystème et ne pas avoir à gérer une gem d'authentification différente pour le JWT, j'ai choisi de m'appuyer sur la gem `devise-jwt` qui est une extension de `devise`.
 
+[master.key](https://guides.rubyonrails.org/security.html#custom-credentials) pour mettre à jour le JWT (normalemnet pas nécessaire)
+
+master.key = 8c48d3afa533337adc2b3f62ebbeba80
+
 #### Pagination
 
 - [Pagy](https://github.com/ddnexus/pagy)

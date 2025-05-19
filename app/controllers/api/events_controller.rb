@@ -2,6 +2,9 @@
 class Api::EventsController < ApplicationController
   include EventsManagement
 
+  before_action :authenticate_user!
+  respond_to :json
+
   before_action :set_event, only: %i[ update destroy ]
   before_action :check_ownership, only: %i[ update destroy ]
 
