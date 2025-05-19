@@ -21,7 +21,7 @@
       title: "Event #{i} from user #{u.email}",
       description: "Description #{i}",
       location: "Location #{i}",
-      date: Time.now + i.days,
+      date: Time.now + 1.day,
       user: u
     )
 
